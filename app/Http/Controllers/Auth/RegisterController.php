@@ -40,20 +40,37 @@ class RegisterController extends Controller
     }
 
     public function register(Request $request){
-        if($request->isMethod('post')){
 
+
+        if($request->isMethod('post')){
+            // バリデーションの追加
+
+            // dd($request);
+            $request -> validate([
+             'username' => 'required | min:2 | max:12',
+             'mail' => 'required | min:5 | max:40 | unique:users | email',
+             'password' => 'required | min:8 | max:20 | alpha-num',
+             'password_confirmation' => 'required | min:8 | max:20 | alpha-num | confirmed:password',
+            ]);
+
+
+
+            // 値を送る
             $username = $request->input('username');
             $mail = $request->input('mail');
             $password = $request->input('password');
 
+            // DBに登録する(idを新たに作る)
             User::create([
                 'username' => $username,
                 'mail' => $mail,
                 'password' => bcrypt($password),
             ]);
 
-            return redirect('added');
+            $request -> session() -> put('username', $username);
+            return redirect('added')->with($username);
         }
+
         return view('auth.register');
     }
 
