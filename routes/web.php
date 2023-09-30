@@ -20,25 +20,28 @@
 
 
 //ログアウト中のページ
-Route::get('/login', 'Auth\LoginController@login');
-Route::post('/login', 'Auth\LoginController@login');
+Route::get('/login', 'Auth\LoginController@login')->name('login'); // 表示用
+Route::post('/login', 'Auth\LoginController@login'); // ボタンを押したとき用
 
-Route::get('/register', 'Auth\RegisterController@register');
-Route::post('/register', 'Auth\RegisterController@register');
+Route::get('/register', 'Auth\RegisterController@register'); // 表示用
+Route::post('/register', 'Auth\RegisterController@register'); // ボタンを押したとき用
 
-Route::get('/added', 'Auth\RegisterController@added');
-Route::post('/added', 'Auth\RegisterController@added');
+Route::get('/added', 'Auth\RegisterController@added'); // 表示用
+Route::post('/added', 'Auth\RegisterController@added'); // ボタンを押したとき用
 
 //ログイン中のページ
-Route::group(['middleware' => ['LoginUserCheck']], function () {
 
-Route::get('/top','PostsController@index');
+Route::get('/top','PostsController@index')->middleware('auth'); // 表示用
+// Route::post('/top','PostsController@index'); // ボタンを押したとき用
 
-Route::get('/profile','UsersController@profile');
+Route::get('/profile','UsersController@profile')->middleware('auth');
 
-Route::get('/search','UsersController@index');
+Route::get('/search','UsersController@search')->middleware('auth');
 
-Route::get('/follow-list','PostsController@index');
-Route::get('/follower-list','PostsController@index');
+Route::get('/follow-list','PostsController@followList')->middleware('auth');
+Route::get('/follower-list','PostsController@followerList')->middleware('auth');
 
-});
+Route::get('/logout', 'Auth\LoginController@logout');
+
+// 投稿用
+Route::post('/post/create', 'PostsController@postsCreate');

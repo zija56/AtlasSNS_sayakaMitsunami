@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -22,16 +23,24 @@
 <body>
     <header>
         <div id = "head">
-        <h1><a><img src="images/logo.png"></a></h1>
-            <div id="">
-                <div id="">
-                    <p>〇〇さん<img src="images/arrow.png"></p>
-                <div>
-                <ul>
-                    <li><a href="/top">ホーム</a></li>
-                    <li><a href="/profile">プロフィール</a></li>
-                    <li><a href="/logout">ログアウト</a></li>
-                </ul>
+            <h1><a href="/top"><img src="/images/atlas.png" class="logo"></a></h1> <!--なぜログイン画面に飛ぶのか？解決済-->
+            <div id="menu">
+                <div class="nav">
+                    <p>○○　さん</p>
+                </div>
+                <div class="nav">
+                    <div class="accordion-menu"></div>
+                    <div class="accordion-inner">
+                       <ul>
+                         <li><a href="/top">ホーム</a></li>
+                         <li><a href="/profile">プロフィール編集</a></li>
+                         <li><a href="/logout">ログアウト</a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="nav">
+                    <a href="/profile"><img src="/images/icon1.png" class="header-icon"></a> <!-- アイコンの指定（後で）-->
+                </div>
             </div>
         </div>
     </header>
@@ -41,24 +50,24 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>〇〇さんの</p>
+                <p>{{ session('username') }}さんの</p>
                 <div>
-                <p>フォロー数</p>
-                <p>〇〇名</p>
+                 <p>フォロー数</p>
+                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォローリスト</a></p>
+                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
                 <div>
-                <p>フォロワー数</p>
-                <p>〇〇名</p>
+                 <p>フォロワー数</p>
+                 <p>〇〇名</p>
                 </div>
-                <p class="btn"><a href="">フォロワーリスト</a></p>
+                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="">ユーザー検索</a></p>
+            <p class="btn"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>
     </footer>
-    <script src="JavaScriptファイルのURL"></script>
-    <script src="JavaScriptファイルのURL"></script>
+    <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+    <script src="/js/script.js"></script>
 </body>
 </html>

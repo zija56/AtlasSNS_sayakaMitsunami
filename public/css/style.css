@@ -1,22 +1,154 @@
 @charset "utf-8";
-html{
-}
-body{
-}
+
 /* header */
-header{
-    background:#186AC9;
+header {
+    background: #186AC9;
 }
 
-/* main content */
-#row{
+#head {
     display: flex;
     flex-flow: row wrap;
 }
-#container{
+
+h1 {
     flex: 0 0 80%;
 }
-#side-bar{
+
+.nav p {
+    color: #fff;
+    text-align: center;
+}
+
+.logo {
+    width: 94px;
+    height: auto;
+    padding: 20px;
+}
+
+.header-icon {
+    width: 50px;
+    height: auto;
+}
+
+/* アコーディオンメニュー */
+#menu {
+    display: flex;
+    flex: 0 0 19%;
+    justify-content: center;
+    align-items: center;
+}
+
+.nav {
+    display: block;
+    width: 33%;
+}
+
+/*閉じた状態の矢印描画*/
+.accordion-menu {
+    position: relative;
+    align-items: center;
+    justify-content: center;
+}
+
+/*開いた状態の矢印描画*/
+.accordion-menu:after {
+    /* 矢印の色 */
+    border-right: solid 2px #fff;
+    /* 矢印の色 */
+    border-top: solid 2px #fff;
+    /* 必須 */
+    content: "";
+    /* 必須 */
+    display: block;
+    height: 8px;
+    right: 25px;
+    top: 38%;
+    transform: rotate(135deg);
+    /* 最初の矢印は下向き */
+    transition: transform .3s ease-in-out, top .3s ease-in-out;
+    width: 8px;
+}
+
+.accordion-menu.open::after {
+    top: 45%;
+    /* 矢印の位置を少し変える */
+    transform: rotate(-45deg);
+    /* 矢印を上向きに変える */
+}
+
+.accordion-inner {
+    /* display: none; */
+    border-color: #186AC9;
+    position: absolute;
+    background-color: #fff;
+    top: 13%;
+    left: 80%;
+}
+
+.accordion-inner ul {}
+
+.accordion-inner li {
+    border-left: solid #186AC9;
+    border-right: solid #186AC9;
+    border-bottom: solid #186AC9;
+    padding: 20px 34px;
+    text-align: center;
+    color: #727272;
+}
+
+/* main content */
+#row {
+    display: flex;
+    flex-flow: row wrap;
+}
+
+#container {
+    flex: 0 0 80%;
+    border-bottom: solid 5px #dcdcdc;
+}
+
+#side-bar {
     flex: 0 0 19%;
     border-left: 1px solid #727272;
+}
+
+/* 投稿フォーム */
+.form-group {
+    display: flex;
+    flex: 0 0 80%;
+    padding-top: 20px;
+}
+
+.icon {
+    display: block;
+    width: 50px;
+    height: auto;
+    margin-left: 60px;
+}
+
+.form-control {
+    border: none;
+    width: 600px;
+    height: 50px;
+    margin-left: 10px;
+}
+
+.send {
+    width: 30px;
+    height: auto;
+    display: block;
+    position: relative;
+}
+
+.send button {
+    position: absolute;
+    left: 700px;
+    border: none;
+    background-color: #fff;
+}
+
+.send img {
+    width: 40px;
+    height: auto;
+    border-radius: 5px;
 }
