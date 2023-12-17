@@ -26,7 +26,9 @@
             <h1><a href="/top"><img src="/images/atlas.png" class="logo"></a></h1> <!--なぜログイン画面に飛ぶのか？解決済-->
             <div id="menu">
                 <div class="nav">
-                    <p>○○　さん</p>
+                   @if (Auth::check())
+                    <p>{{ Auth::user()->username }} さん</p>
+                   @endif
                 </div>
                 <div class="nav">
                     <div class="accordion-menu"></div>
@@ -39,7 +41,7 @@
                     </div>
                 </div>
                 <div class="nav">
-                    <a href="/profile"><img src="/images/icon1.png" class="header-icon"></a> <!-- アイコンの指定（後で）-->
+                    <a href="/profile"><img src="{{ asset('storage/images/'.Auth::user()->images) }}" class="header-icon"></a> <!-- アイコンの指定（解決！）-->
                 </div>
             </div>
         </div>
@@ -50,15 +52,15 @@
         </div >
         <div id="side-bar">
             <div id="confirm">
-                <p>{{ session('username') }}さんの</p>
-                <div>
+                <p>{{ Auth::user()->username }} さんの</p>
+                <div class="list">
                  <p>フォロー数</p>
-                 <p>〇〇名</p>
+                 <p>○○名</p>
                 </div>
                 <p class="btn"><a href="/follow-list">フォローリスト</a></p>
-                <div>
+                <div class="list">
                  <p>フォロワー数</p>
-                 <p>〇〇名</p>
+                 <p>○○名</p>
                 </div>
                 <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
             </div>

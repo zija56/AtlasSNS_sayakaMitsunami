@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Post extends Model
 {
     protected $fillable = [
-        'post'
+        'user_id','post'
     ];
 
     //リレーション定義を追加

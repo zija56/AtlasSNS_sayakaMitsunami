@@ -37,11 +37,29 @@ Route::get('/top','PostsController@index')->middleware('auth'); // 表示用
 Route::get('/profile','UsersController@profile')->middleware('auth');
 
 Route::get('/search','UsersController@search')->middleware('auth');
-
-Route::get('/follow-list','PostsController@followList')->middleware('auth');
-Route::get('/follower-list','PostsController@followerList')->middleware('auth');
+Route::post('/search','UsersController@search');
 
 Route::get('/logout', 'Auth\LoginController@logout');
 
-// 投稿用
+// 投稿登録
 Route::post('/post/create', 'PostsController@postsCreate');
+
+// 投稿編集
+Route::post('/post/update','PostsController@update');
+
+// 投稿削除
+Route::get('/post/{id}/delete','PostsController@delete');
+
+// フォロー機能
+Route::group(['middleware' => 'auth'], function () {
+    Route::get('/follow/{userId}','FollowsController@follow')->name('follow');
+    Route::post('/follow/{userId}','FollowsController@follow');
+    Route::get('/cancel/{userId}','FollowsController@cancel')->name('cancel');
+    Route::post('/cancel/{userId}','FollowsController@cancel');
+});
+
+//　フォローリストページ
+Route::get('/follow-list','FollowsController@followList');
+
+// フォロワーリストページ
+Route::get('/follower-list','FollowsController@followerList');
