@@ -30,7 +30,7 @@ class FollowsController extends Controller
             ])
                 ->delete();
         }
-        return redirect('/search');
+        return back()->withInput();
     }
 
     public function follow($userId)
@@ -51,7 +51,7 @@ class FollowsController extends Controller
                 'following_id' => $loggedInUserId,
                 'followed_id' => $followedUserId,
             ]);
-            return redirect('/search'); // フォロー後に元のページにリダイレクト
+            return back()->withInput(); // フォロー後に元のページにリダイレクト
         }
     }
 
@@ -64,7 +64,6 @@ class FollowsController extends Controller
         $users = User::whereIn('id',$following_id)->get();
 
         return view('follows.followList',compact('posts','users'));
-        return view('layouts.login',compact('posts','users'));
     }
 
     public function followerList(){
@@ -76,8 +75,5 @@ class FollowsController extends Controller
         $users = User::whereIn('id',$followed_id)->get();
 
         return view('follows.followerList',compact('posts','users'));
-        return view('layouts.login',compact('posts','users'));
     }
-
-
 }

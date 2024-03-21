@@ -35,7 +35,7 @@
                     <div class="accordion-inner">
                        <ul>
                          <li><a href="/top">ホーム</a></li>
-                         <li><a href="/profile">プロフィール編集</a></li>
+                         <li><a href="/myprofile">プロフィール編集</a></li>
                          <li><a href="/logout">ログアウト</a></li>
                         </ul>
                     </div>
@@ -55,16 +55,16 @@
                 <p>{{ Auth::user()->username }} さんの</p>
                 <div class="list">
                  <p>フォロー数</p>
-                 <p>○○名</p>
+                 <p>{{ Auth::user()->follows()->get()->count() }}名</p>
                 </div>
-                <p class="btn"><a href="/follow-list">フォローリスト</a></p>
+                <p class="btn-side"><a href="/follow-list">フォローリスト</a></p>
                 <div class="list">
                  <p>フォロワー数</p>
-                 <p>○○名</p>
+                 <p>{{ Auth::user()->followers()->get()->count() }}名</p>
                 </div>
-                <p class="btn"><a href="/follower-list">フォロワーリスト</a></p>
+                <p class="btn-side"><a href="/follower-list">フォロワーリスト</a></p>
             </div>
-            <p class="btn"><a href="/search">ユーザー検索</a></p>
+            <p class="btn-search"><a href="/search">ユーザー検索</a></p>
         </div>
     </div>
     <footer>

@@ -21,4 +21,5 @@ class Follow extends Model
     public function followers(){
         return $this->belongsToMany('App\User','follows','followed_id','following_id');
     }
+
 }

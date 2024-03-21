@@ -34,11 +34,16 @@ Route::post('/added', 'Auth\RegisterController@added'); // ボタンを押した
 Route::get('/top','PostsController@index')->middleware('auth'); // 表示用
 // Route::post('/top','PostsController@index'); // ボタンを押したとき用
 
-Route::get('/profile','UsersController@profile')->middleware('auth');
+// 自分のプロフィール画面へ
+Route::get('/myprofile','UsersController@myProfile')->middleware('auth');
+// 各ユーザーのプロフィール画面へ
+Route::get('/profile/{id}','UsersController@profile')->middleware('auth');
 
+// 検索ページ
 Route::get('/search','UsersController@search')->middleware('auth');
 Route::post('/search','UsersController@search');
 
+// ログアウト
 Route::get('/logout', 'Auth\LoginController@logout');
 
 // 投稿登録
