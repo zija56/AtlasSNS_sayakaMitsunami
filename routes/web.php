@@ -35,7 +35,11 @@ Route::get('/top','PostsController@index')->middleware('auth'); // 表示用
 // Route::post('/top','PostsController@index'); // ボタンを押したとき用
 
 // 自分のプロフィール画面へ
-Route::get('/myprofile','UsersController@myProfile')->middleware('auth');
+Route::get('/myprofile','UsersController@myProfile');
+
+// 自分のプロフィールの更新
+Route::post('/myprofile/update','UsersController@update');
+
 // 各ユーザーのプロフィール画面へ
 Route::get('/profile/{id}','UsersController@profile')->middleware('auth');
 

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Validation\Rule;
 
 use App\User;
 use App\POst;
@@ -13,21 +14,20 @@ class UsersController extends Controller
 {
     // 自分のプロフィールへ
     public function myProfile(){
-
         return view('users.myprofile');
     }
 
+
     // 自分のプロフィールを編集する
-    public function updateForm(Request $request){
+    public function update(Request $request){
+        $user = Auth::user();
 
         $request->validate([
             'upUsername' => 'required|min:2|max:12',
-            'upMail' => 'required|min:5|max:40|email',
-            Rule::unique('users')->ignore($this->user),
+            'upMail' => 'required|min:5|max:40|email|unique:users,mail,'.$user->email.'|email',
             'upPassword' => 'required|min:8|max:20|alpha-num|confirmed',
             'upPassword_conformation' => 'required|min:8|max:20|alpha-num',
             'upBio' => 'max:150',
-            'upIcon' => 'image',
         ]);
 
         $id = $request->input('id');
@@ -35,17 +35,17 @@ class UsersController extends Controller
         $up_mail = $request->input('upMail');
         $up_password = $request->input('upPassword');
         $up_bio = $request->input('upBio');
-        $up_icon = $request->input('upIcon');
+        // $up_images = $request->input('upImages');
 
         User::where('id',$id)->update([
-            'upUsername' => $up_username,
-            'upMail' => $up_mail,
-            'upPassword' => $up_password,
-            'upBio' => $up_bio,
-            'upIcon' => $up_icon
+            'username' => $up_username,
+            'mail' => $up_mail,
+            'password' => $up_password,
+            'bio' => $up_bio,
+            // 'Images' => $up_images
         ]);
 
-        return redirect('/top');
+        return redirect('users.myprofile');
     }
 
     // 各ユーザーのプロフィール画面へ

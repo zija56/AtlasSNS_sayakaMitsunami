@@ -439,6 +439,12 @@ h1 {
 
 .update-form {}
 
-.update-form label {}
+.update-form label {
+    position: relative;
+    left: 350px;
+}
 
-.update-form input {}
+.update-form input {
+    position: relative;
+    left: 500px;
+}
