@@ -37,18 +37,20 @@ class UsersController extends Controller
         $up_password = $request->input('upPassword');
         $up_bio = $request->input('upBio');
         $up_images = $request->file('upImages'); // 一時保存されたUploadedFileの取得
+        $image_name = $up_images->getClientOriginalName();
+
         // ファイルの保存と保存されたファイルのパス取得
         $path = '';
         if (isset($up_images)) {
-            $path = $up_images->storeAs('public/images',$up_images);
+            $path = $up_images->storeAs('public/images',$image_name);
         }
 
         User::where('id',$id)->update([
             'username' => $up_username,
             'mail' => $up_mail,
-            'password' => $up_password,
+            'password' => bcrypt($up_password),
             'bio' => $up_bio,
-            'Images' => $path
+            'images' => $image_name
         ]);
 
         return redirect('/top');
