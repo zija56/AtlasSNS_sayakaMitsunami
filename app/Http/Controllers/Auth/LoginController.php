@@ -45,6 +45,7 @@ class LoginController extends Controller
             $data=$request->only('mail','password');
             // ログインが成功したら、トップページへ
             //↓ログイン条件は公開時には消すこと
+            // dd($data);
             if(Auth::attempt($data)){
                 return redirect('/top');
             }

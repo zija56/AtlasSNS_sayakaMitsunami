@@ -3,11 +3,20 @@
 @section('content')
 @if (Auth::check())
 <div class="">
-  <input type="hidden" name="id">
+  @if($errors->any())
+    <div class="alert alert-danger">
+      <ul>
+        @foreach($errors->all() as $error)
+        <li>{{ $error }}</li>
+        @endforeach
+      </ul>
+    </div>
+@endif
   <div class="image">
    <img src="{{ asset('storage/images/'.Auth::user()->images) }}">
   </div>
-  <form action="/myprofile/update" method=post>
+  <form action="/myprofile/update" method=post enctype="multipart/form-data">
+    <input type="hidden" name="id" value="{{Auth::user()->id}}">
     @csrf
     <div class="update-block">
       <div class="update-form">
@@ -23,8 +32,8 @@
         <input type="password" name="upPassword" class="">
       </div>
       <div class="update-form">
-        <label for="password_conformation">パスワード確認</label>
-        <input type="password" name="upPassword_conformation" class="">
+        <label for="password_confirmation">パスワード確認</label>
+        <input type="password" name="upPassword_confirmation" class="">
       </div>
       <div class="update-form">
         <label for="bio">自己紹介</label>

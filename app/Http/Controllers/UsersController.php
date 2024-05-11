@@ -24,28 +24,34 @@ class UsersController extends Controller
 
         $request->validate([
             'upUsername' => 'required|min:2|max:12',
-            'upMail' => 'required|min:5|max:40|email|unique:users,mail,'.$user->email.'|email',
+            'upMail' => 'required|min:5|max:40|email|unique:users,mail,'.$user->id.'|email',
             'upPassword' => 'required|min:8|max:20|alpha-num|confirmed',
-            'upPassword_conformation' => 'required|min:8|max:20|alpha-num',
+            'upPassword_confirmation' => 'required|min:8|max:20|alpha-num',
             'upBio' => 'max:150',
         ]);
 
         $id = $request->input('id');
+        //dd($id);
         $up_username = $request->input('upUsername');
         $up_mail = $request->input('upMail');
         $up_password = $request->input('upPassword');
         $up_bio = $request->input('upBio');
-        // $up_images = $request->input('upImages');
+        $up_images = $request->file('upImages'); // 一時保存されたUploadedFileの取得
+        // ファイルの保存と保存されたファイルのパス取得
+        $path = '';
+        if (isset($up_images)) {
+            $path = $up_images->storeAs('public/images',$up_images);
+        }
 
         User::where('id',$id)->update([
             'username' => $up_username,
             'mail' => $up_mail,
             'password' => $up_password,
             'bio' => $up_bio,
-            // 'Images' => $up_images
+            'Images' => $path
         ]);
 
-        return redirect('users.myprofile');
+        return redirect('/top');
     }
 
     // 各ユーザーのプロフィール画面へ
