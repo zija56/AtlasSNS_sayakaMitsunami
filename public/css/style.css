@@ -1,8 +1,8 @@
 @charset "utf-8";
 
 /* ログイン画面 */
-.body {
-    background: linear-gradient(#0067C6, #FAE233);
+body {
+    background: linear-gradient(blue, pink);
 }
 
 .login {}
@@ -220,6 +220,14 @@ h1 {
 
 .table td {
     background-color: #fff;
+    vertical-align: super;
+}
+
+.timeline img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    /* 画像は縦横比を維持したまま、50×50pxの領域を埋めるように拡大縮小 */
 }
 
 /* .table-bordered td {
@@ -297,23 +305,28 @@ h1 {
     width: 60%;
 }
 
+.js-modal-open {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    margin: 0 auto;
+    display: block;
+    border-radius: 5px;
+    overflow: hidden;
+    cursor: pointer;
+}
+
 .js-modal-open img {
     position: absolute;
     width: 30px;
     height: 30px;
+    object-fit: cover;
+    /* 画像は縦横比を維持したまま、30×30pxの領域を埋めるように拡大縮小 */
     top: 50%;
     left: 60%;
+    transform: translate(-50%, -50%);
     background-color: #fff;
 }
-
-/* .btn-danger img {
-    position: absolute;
-    width: 30px;
-    height: auto;
-    left: 840px;
-    background-color: #fff;
-    border-radius: 5px;
-}*/
 
 .btn-danger {
     position: relative;
@@ -337,6 +350,10 @@ h1 {
     -webkit-transition: .4s ease-in-out;
     transition: .4s ease-in-out;
     background-color: #fff;
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
+    /* 画像は縦横比を維持したまま、30×30pxの領域を埋めるように拡大縮小 */
 }
 
 .btn-danger:hover img:nth-of-type(2) {
@@ -399,6 +416,13 @@ h1 {
     width: auto;
 }
 
+.user-list img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    /* 画像は縦横比を維持したまま、50×50pxの領域を埋めるように拡大縮小 */
+}
+
 .user-list td:nth-child(2) {
     padding-left: 20px;
     vertical-align: middle;
@@ -416,6 +440,7 @@ h1 {
     color: #fff;
     padding: 2px 15px 2px 15px;
     font-size: 14px;
+    vertical-align: middle;
 }
 
 .btn-cancel {

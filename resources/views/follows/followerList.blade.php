@@ -17,7 +17,7 @@
        <tr>
         <td><a href="/profile/{{ $user->id }}"><img src="{{ asset('storage/images/'.$post->user->images) }}"></td></a>
         <td>{{ $post->user->username }}</td>
-        <td>{{ $post->post }}</td>
+        <td>{!! nl2br(htmlspecialchars($post->post)) !!}</td>
         <td>{{ $post->updated_at }}</td>
        </tr>
      </table>

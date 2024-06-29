@@ -22,7 +22,7 @@
 <body>
   <header>
     <h1><a href="/top"><img src="images/atlas.png" class="login-logo"></a></h1>
-    <p>Social Network Service</p>
+    <p class ="sns">Social Network Service</p>
   </header>
   <div id="container">
     @yield('content')

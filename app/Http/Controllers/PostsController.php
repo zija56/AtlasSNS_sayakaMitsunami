@@ -11,9 +11,12 @@ use App\Post;
 class PostsController extends Controller
 {
     public function index(){
-        $posts = Post::get();
+        // DB:Post内でカラム「user_id」がログインユーザーのフォローしている人のidと一致する投稿情報、もしく（orwhere）は「User_id」がログインユーザーのidと一致する投稿情報を取得して、作成日が最新順になるように表示する。
+        $posts = Post::query()->whereIn('user_id', Auth::user()->follows()->pluck('followed_id'))->orWhere('user_id', Auth::user()->id)->latest()->get();
+
         return view('posts.index',['posts'=>$posts]);
     }
+
     // 投稿用に下記のメソッドを追加
     public function postsCreate(Request $request)
     {
@@ -31,16 +34,13 @@ class PostsController extends Controller
         return redirect('/top');
     }
 
-   // public function updateForm($id)
-   // {
-      //  $posts = Post::get();
-      //  $post = Post::where('id',$id)->first();
-      //  return view('posts.index',['posts'=>$posts,'post'=>$post]);
-   // }
-
     public function update(Request $request)
     {
         $id = $request->input('id');
+        $request->validate([
+            'upPost' => 'required|unique:posts,post|min:1|max:150',
+        ]);
+
         $up_post = $request->input('upPost');
 
         Post::where('id',$id)->update([
@@ -54,7 +54,6 @@ class PostsController extends Controller
     {
         Post::where('id',$id)->delete();
         return redirect('/top');
-
     }
 
     public function followList(){

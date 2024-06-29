@@ -14,6 +14,7 @@
 
 <div class="user">
     @foreach ($users as $user)
+    @if ($user->id !== Auth::user()->id)
      <table class="user-list">
       <tr>
         <td><img src="{{ asset('storage/images/'.$user->images) }}"></td>
@@ -24,6 +25,7 @@
        <a href="{{ route('follow', ['userId' => $user->id]) }}" class="btn btn-follow">フォローする</a>
         @endif</td>
       </tr>
+      @endif
     @endforeach
      </table>
 </div>

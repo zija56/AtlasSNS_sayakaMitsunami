@@ -1,10 +1,84 @@
 @charset "UTF-8";
 
-html{
+html {
     height: 100%;
+    color: #fff;
 }
 
-body{
+body {
     height: 100%;
-    background: #186AC9;
+    background: linear-gradient(#036AC8, #52ACFF, #FDE32F);
+}
+
+.sns {
+    text-align: center;
+    padding-bottom: 30px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.login-logo {
+    width: 100px;
+    padding-top: 50px;
+    position: relative;
+    left: 46%;
+}
+
+.login {
+    width: 200px;
+    background-color: rgba(0, 0, 0, .3);
+    color: #fff;
+    padding: 0px 20px 0px 20px;
+    position: relative;
+    margin: 0 auto;
+    border-radius: 5px;
+}
+
+
+
+.new {
+    color: #fff;
+    text-align: center;
+    text-decoration: underline;
+    font-size: 10px;
+    padding: 20px 0;
+}
+
+.Tittle {
+    text-align: center;
+    padding: 30px 0px 30px 0px;
+}
+
+.List {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    /* 縦方向のflexを使う */
+    gap: 20px;
+}
+
+.ListItem {
+    width: 100%;
+    color: #fff;
+}
+
+.input {
+    width: 95%;
+}
+
+
+
+.login-btn {
+    margin: 10px 0;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.button {
+    border: solid 3px #ED3833;
+    border-radius: 5px;
+    background-color: #ED3833;
+    color: #fff;
+    padding: 2px 15px 2px 15px;
+    font-size: 14px;
 }
