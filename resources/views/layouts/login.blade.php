@@ -54,13 +54,11 @@
             <div id="confirm">
                 <p>{{ Auth::user()->username }} さんの</p>
                 <div class="list">
-                 <p>フォロー数</p>
-                 <p>{{ Auth::user()->follows()->get()->count() }}名</p>
+                 <p>フォロー数　　　　{{ Auth::user()->follows()->get()->count() }}人</p>
                 </div>
                 <p class="btn-side"><a href="/follow-list">フォローリスト</a></p>
                 <div class="list">
-                 <p>フォロワー数</p>
-                 <p>{{ Auth::user()->followers()->get()->count() }}名</p>
+                 <p>フォロワー数　　　{{ Auth::user()->followers()->get()->count() }}人</p>
                 </div>
                 <p class="btn-side"><a href="/follower-list">フォロワーリスト</a></p>
             </div>

@@ -1,7 +1,6 @@
 @extends('layouts.logout')
 
 @section('content')
-<!-- 適切なURLを入力してください -->
 {!! Form::open() !!}
 <div class="login">
   <p class="Tittle">新規ユーザー登録</p>
