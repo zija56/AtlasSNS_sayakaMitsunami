@@ -1,7 +1,7 @@
 @extends('layouts.login')
 
 @section('content')
-<div class="posts">
+<div class="main01 posts">
   {!! Form::open(['url'=>'/post/create']) !!}
   @csrf
   <div class="form-group">
@@ -18,24 +18,32 @@
  </div>
   {!! Form::close() !!}
 </div>
-<div class="timeline">
+<div class="timelines">
   @if (Auth::check())
    @foreach ($posts as $post)
-      <table class="timeline">
-        <tr>
-          <td><img src="{{ asset('storage/images/'.$post->user->images) }}"></td>
-          <td>{{ $post->user->username }}</td>
-          <td>{!! nl2br(htmlspecialchars($post->post)) !!}</td>
-          <td>{{ $post->updated_at }}</td>
-          @if ($post->user->id === Auth::user()->id)
+   <div class="timeline">
+      <div class="TimelineTable">
+        <div class="TimelineContents01">
+           <img src="{{ asset('storage/images/'.$post->user->images) }}">
+        </div>
+        <div class="TimelineContents02">
+          <div class="name">{{ $post->user->username }}</div>
+          <div>{!! nl2br(htmlspecialchars($post->post)) !!}</div>
+        </div>
+        <div class="TimelineContents03">
+          <div>{{ $post->updated_at }}</div>
+        </div>
+      </div>
+       @if ($post->user->id === Auth::user()->id)
           <!-- 更新用 -->
-          <td><a class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="/images/edit.png" alt="編集"></a></td>
+      <div class="EditTrash">
+        <a class="js-modal-open" post="{{ $post->post }}" post_id="{{ $post->id }}"><img src="/images/edit.png" alt="編集"></a>
           <!-- 削除用 -->
-          <td><a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="/images/trash-h.png" alt="削除1"><img src="/images/trash.png" alt="削除2"></a></td>
-          @endif
-        </tr>
+        <a class="btn btn-danger" href="/post/{{$post->id}}/delete" onclick="return confirm('この投稿を削除します。よろしいでしょうか？')"><img src="/images/trash-h.png" alt="削除1"><img src="/images/trash.png" alt="削除2"></a>
+      </div>
+      @endif
+    </div>
    @endforeach
-      </table>
       <!-- モーダルの中身 -->
       <div class="modal js-modal">
         <div class="modal_bg js-modal-close"></div>
@@ -46,7 +54,7 @@
 				      {{ $message }}<br>
 			       @endforeach
 		        @endif
-            <textarea name="upPost" class="modal_post" cols="50" rows="3"></textarea>
+            <textarea name="upPost" class="modal_post" cols="50" rows="5"></textarea>
             <input type="hidden" name="id" class="modal_id" value="">
             <button type="submit"><img src="/images/edit.png" alt="編集"></button>
             {{ csrf_field() }}

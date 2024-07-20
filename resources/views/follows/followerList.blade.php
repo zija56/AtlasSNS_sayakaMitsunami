@@ -2,27 +2,31 @@
 
 @section('content')
 @if (Auth::check())
- <div id="list">
-   <div><h2>Follower List</h2></div>
-   <div class="follower-list">
+ <div class="main01 list">
+   <div class="ListTittle"><h2>Follower List</h2></div>
+   <div class="FollowerList">
     @foreach ($users as $user)
     <a href="/profile/{{ $user->id }}"><img src="{{ asset('storage/images/'.$user->images) }}"></a>
     @endforeach
    </div>
  </div>
- <div id="follower-posts">
-   <div>
+ <div class="timelines">
     @foreach ($posts as $post)
-     <table>
-       <tr>
-        <td><a href="/profile/{{ $user->id }}"><img src="{{ asset('storage/images/'.$post->user->images) }}"></td></a>
-        <td>{{ $post->user->username }}</td>
-        <td>{!! nl2br(htmlspecialchars($post->post)) !!}</td>
-        <td>{{ $post->updated_at }}</td>
-       </tr>
-     </table>
+     <div class="timeline">
+       <div class="TimelineTable">
+         <div class="TimelineContents01">
+           <a href="/profile/{{ $user->id }}"><img src="{{ asset('storage/images/'.$post->user->images) }}"></a>
+         </div>
+         <div class="TimelineContents02">
+           <div class="name">{{ $post->user->username }}</div>
+           <div>{!! nl2br(htmlspecialchars($post->post)) !!}</div>
+         </div>
+         <div class="TimelineContents03">
+           <div>{{ $post->updated_at }}</div>
+         </div>
+       </div>
+     </div>
     @endforeach
-   </div>
  </div>
 @endif
 @endsection

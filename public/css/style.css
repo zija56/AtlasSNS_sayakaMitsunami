@@ -82,7 +82,7 @@ h1 {
     border-color: #186AC9;
     position: absolute;
     background-color: #fff;
-    top: 13%;
+    top: 77px;
     left: 80%;
 }
 
@@ -103,12 +103,14 @@ h1 {
 
 #container {
     flex: 0 0 80%;
+    border-right: 1px solid #727272;
+    height: auto;
+    width: 100%;
 }
 
 /* サイドバー */
 #side-bar {
     flex: 0 0 19%;
-    border-left: 1px solid #727272;
     width: auto;
     height: auto;
 }
@@ -145,21 +147,21 @@ h1 {
     padding: 5px 15px;
     font-size: 16px;
     width: fit-content;
-    position: relative;
     margin: 20px auto;
 }
 
-/* 投稿フォーム */
-.posts {
-    height: auto;
+/* 各ページ共通 */
+.main01 {
+    position: relative;
+    width: auto;
+    padding: 20px 0 20px 60px;
     border-bottom: 5px solid #dcdcdc;
-    padding-bottom: 60px;
 }
 
+/* top:投稿フォーム */
 .form-group {
     display: flex;
     flex: 0 0 80%;
-    padding-top: 20px;
 }
 
 .icon {
@@ -173,19 +175,18 @@ h1 {
     border: none;
     width: 600px;
     height: 50px;
-    margin-left: 10px;
+    margin: 10px;
+    resize: none;
 }
 
 .send {
-    width: 30px;
-    height: auto;
-    display: block;
     position: relative;
+    width: 100%;
+    height: auto;
+    text-align: right;
 }
 
 .send button {
-    position: absolute;
-    left: 800px;
     border: none;
     background-color: #fff;
 }
@@ -193,25 +194,57 @@ h1 {
 .send img {
     width: 40px;
     height: auto;
+    object-fit: cover;
     border-radius: 5px;
+    margin-right: 200px;
 }
 
-/* top:投稿表示 */
-.timeline {
+/* top,follow,follower:投稿表示 */
+.timelines {
     position: relative;
-    height: auto;
+    width: 100%;
 }
 
-.table {
-    border-collapse: collapse;
-    max-width: 100%;
-    height: auto;
-    border-bottom: 1px solid #dcdcdc;
+.timeline {
+    border-bottom: 2px solid #dcdcdc;
+    padding: 20px 0;
+    font-size: 14px;
 }
 
-.table td {
-    background-color: #fff;
-    vertical-align: super;
+.TimelineTable {
+    position: relative;
+    display: flex;
+    width: auto;
+    padding: 0 10px 0 30px;
+}
+
+.TimelineContents01 {
+    position: relative;
+    padding-left: 100px;
+}
+
+.TimelineContents02 {
+    position: relative;
+    padding: 0 50px 0 20px;
+    width: 500px;
+}
+
+.TimelineContents03 {
+    position: relative;
+    padding: 0 40px;
+    font-size: 12px;
+}
+
+.name {
+    font-weight: bold;
+    padding-bottom: 10px;
+}
+
+.EditTrash {
+    display: flex;
+    width: 8%;
+    margin: 0 0 0 auto;
+    padding: 0 80px 0 0;
 }
 
 .timeline img {
@@ -219,10 +252,6 @@ h1 {
     height: 50px;
     object-fit: cover;
     /* 画像は縦横比を維持したまま、50×50pxの領域を埋めるように拡大縮小 */
-}
-
-.username {
-    display: block;
 }
 
 .post {
@@ -264,13 +293,39 @@ h1 {
 }
 
 .modal_content {
+    display: flex;
+    flex-direction: column;
+    /* 縦方向のflexを使う */
     background: #fff;
     left: 50%;
-    padding: 40px;
-    position: absolute;
+    padding: 20px;
+    position: relative;
     top: 50%;
     transform: translate(-50%, -50%);
     width: 60%;
+    height: max-content;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.modal_post {
+    width: 90%;
+    height: 70%;
+    resize: none;
+    padding: 20px;
+    margin: 0 0 20px 0;
+    border-color: #727272;
+}
+
+.modal_content button {
+    border: none;
+    background-color: #fff;
+}
+
+.modal_content img {
+    width: 30px;
+    height: 30px;
+    object-fit: cover;
 }
 
 .js-modal-open {
@@ -422,17 +477,17 @@ h1 {
     font-size: 14px;
 }
 
-/* プロフィール編集画面 */
+/* プロフィール編集ページ */
 .update {
     display: flex;
     margin: 5% 20%;
 }
 
-.update-block {
+.UpdateBlock {
     width: 100%;
 }
 
-.update-form {
+.UpdateForm {
     position: relative;
     padding: 3% 0 3% 10%;
     font-size: 18px;
@@ -458,7 +513,6 @@ h1 {
     border: 2px solid #ccc;
     background-color: rgba(204, 204, 204, 0.3);
     font-size: 10px;
-
 }
 
 .file::file-selector-button {
@@ -483,5 +537,91 @@ h1 {
     justify-content: center;
     width: 100px;
     position: relative;
-    margin: 0 auto;
+    margin: 20px auto;
+}
+
+/* follow,followerページ */
+.list {
+    display: flex;
+}
+
+.ListTittle {
+    padding: 5px 15px 5px 5px;
+    height: 40px;
+    text-align: center;
+    margin: auto 0 0 0;
+}
+
+.ListTittle h2 {
+    font-size: 20px;
+}
+
+.FollowList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.FollowerList {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.FollowList a {
+    margin: 1px;
+    padding: 5px;
+}
+
+.FollowList img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    /* 画像は縦横比を維持したまま、30×30pxの領域を埋めるように拡大縮小 */
+}
+
+.FollowerList a {
+    margin: 1px;
+    padding: 5px;
+}
+
+.FollowerList img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    /* 画像は縦横比を維持したまま、30×30pxの領域を埋めるように拡大縮小 */
+}
+
+/* プロフィールページ */
+.introduce {
+    display: flex;
+}
+
+.IntroduceImage {
+    margin: 0 0 0 40px;
+}
+
+.introduce img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
+    /* 画像は縦横比を維持したまま、50×50pxの領域を埋めるように拡大縮小 */
+}
+
+.IntroduceContents {
+    width: max-content;
+}
+
+.profile {
+    display: flex;
+    position: relative;
+    padding: 3% 0 3% 5%;
+    font-size: 18px;
+    width: max-content;
+}
+
+.profile p {
+    width: 500px;
+}
+
+.btn-profile {
+    margin: auto 0 3% 0;
 }

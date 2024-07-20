@@ -41,7 +41,7 @@
                     </div>
                 </div>
                 <div class="nav">
-                    <a href="/profile"><img src="{{ asset('storage/images/'.Auth::user()->images) }}" class="header-icon"></a> <!-- アイコンの指定（解決！）-->
+                    <a href="/profile/{{ Auth::user()->id }}"><img src="{{ asset('storage/images/'.Auth::user()->images) }}" class="header-icon"></a> <!-- アイコンの指定（解決！）-->
                 </div>
             </div>
         </div>
