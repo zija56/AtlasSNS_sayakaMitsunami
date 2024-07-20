@@ -22,7 +22,7 @@
            <div>{!! nl2br(htmlspecialchars($post->post)) !!}</div>
          </div>
          <div class="TimelineContents03">
-           <div>{{ $post->updated_at }}</div>
+           <div>{{ $post->updated_at->format('Y-m-d H:i') }}</div>
          </div>
        </div>
      </div>

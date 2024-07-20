@@ -149,7 +149,14 @@ return [
     'attributes' => [
         'username' => 'ユーザー名',
         'mail' => 'メールアドレス',
-        'password' => 'パスワード'
+        'password' => 'パスワード',
+        'password_confirmation' => 'パスワード確認',
+        'post' => '投稿内容',
+        'upUsername' => 'ユーザー名',
+        'upMail' => 'メールアドレス',
+        'upPassword' => 'パスワード',
+        'upPassword_confirmation' => 'パスワード確認',
+        'upPost' => '投稿内容',
     ],
 
 ];

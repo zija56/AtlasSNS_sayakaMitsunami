@@ -61,7 +61,7 @@ class UsersController extends Controller
         // 入力されたidからユーザー情報を取得
         $users = User::where('id',$id)->get();
         // 入力されたidからそのユーザーの投稿情報を取得
-        $posts = Post::where('user_id',$id)->get();
+        $posts = Post::where('user_id',$id)->latest()->get();
         return view('users.profile',compact('posts','users'));
     }
 
